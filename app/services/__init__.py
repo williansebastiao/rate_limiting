@@ -1,5 +1,5 @@
-from .simulator import SimulatorService
+from .notification_service import NotificationService
 
 __all__ = [
-    "SimulatorService",
+    "NotificationService",
 ]

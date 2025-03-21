@@ -1,6 +1,5 @@
-from .simulator_schema import SimulatorResponseSchema, SimulatorSchema
+from .notification_schema import NotificationSchema
 
 __all__ = [
-    "SimulatorSchema",
-    "SimulatorResponseSchema",
+    "NotificationSchema",
 ]
