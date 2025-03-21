@@ -8,7 +8,7 @@ from app.core import settings
 redis = aioredis.from_url(str(settings.CACHE_DRIVER))
 
 
-async def rate_limit_middleware(user_id: Annotated[str, Header()]):
+async def rate_limit_middleware(user_id: Annotated[int, Header()]):
     if not user_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

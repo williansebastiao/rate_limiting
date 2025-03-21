@@ -6,7 +6,7 @@ authors = [
     {name = "Willians Pereira",email = "willians@4vconnect.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.12,<4.0"
+requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard] (>=0.115.11,<0.116.0)",
     "pendulum (>=3.0.0,<4.0.0)",

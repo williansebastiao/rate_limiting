@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 DOCKER_COMPOSE := docker-compose
-DOCKER := docker exec -it simulator-app
+DOCKER := docker exec -it rate-app
 POETRY_CMD := poetry run
 
 .PHONY: help scaffold alembic start build stop container migration  migrate pre-commit pre-commit-install pre-commit-update pylint-generate lint test flake black isort autoflake pylint
