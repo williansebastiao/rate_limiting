@@ -7,7 +7,7 @@ POETRY_CMD := poetry run
 .PHONY: help scaffold alembic start build stop container migration  migrate pre-commit pre-commit-install pre-commit-update pylint-generate lint test flake black isort autoflake pylint
 
 help:
-	@echo "Simulator"
+	@echo "Rate Limiter API"
 	@echo "---------------------"
 	@echo "Usage: make <command>"
 	@echo ""

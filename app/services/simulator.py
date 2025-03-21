@@ -1,8 +1,5 @@
 from datetime import datetime
 
-from sqlalchemy.orm import Session
-
-from app.repositories import CarRepository
 from app.schemas import SimulatorSchema
 
 RATE_PRODUCED = 0.5
@@ -44,18 +41,12 @@ class SimulatorService:
 
         return round(final_policy_limit, 2), round(deductible_value, 2)
 
-    async def make_simulation(self, session: Session):
+    async def make_simulation(self):
         rate_applied = await self.rate_applied()
         calculated_premium = await self.calculate_base_premium(rate_applied)
         policy_limit, deductible_value = await self.calculate_policy_limit()
 
-        repository = CarRepository()
-        response = await repository.store(
-            payload=self.car_details,
-            session=session,
-        )
-
-        response = SimulatorSchema.model_validate(response).model_dump()
+        response = None
 
         return {
             "car_details": response,

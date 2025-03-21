@@ -17,8 +17,6 @@ services:
             - ./app:/code/app
             - ./tests:/code/tests
             - ./.env:/code/.env
-        depends_on:
-            - db
         networks:
             - rate
 
