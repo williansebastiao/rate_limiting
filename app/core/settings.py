@@ -1,4 +1,3 @@
-from pydantic import PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -9,7 +8,7 @@ class Settings(BaseSettings):
     APP_ENV: str = "prd"
     APP_PATH: str = "/api"
 
-    DATABASE_URL: PostgresDsn
+    RATE_LIMIT: int = 100
 
     model_config = SettingsConfigDict(
         extra="ignore",
