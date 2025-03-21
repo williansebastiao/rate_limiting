@@ -4,7 +4,7 @@ DOCKER_COMPOSE := docker-compose
 DOCKER := docker exec -it rate-app
 POETRY_CMD := poetry run
 
-.PHONY: help scaffold alembic start build stop container migration  migrate pre-commit pre-commit-install pre-commit-update pylint-generate lint test flake black isort autoflake pylint
+.PHONY: help scaffold start build stop container pre-commit pre-commit-install pre-commit-update pylint-generate lint test flake black isort autoflake pylint
 
 help:
 	@echo "Rate Limiter API"
@@ -21,9 +21,6 @@ scaffold: ## Start config to project
 	poetry update
 	$(POETRY_CMD) pre-commit install
 
-alembic: ## Start alembic
-	$(POETRY_CMD) alembic init migrations
-
 start: ## Start all containers
 	$(DOCKER_COMPOSE) up -d
 
@@ -35,12 +32,6 @@ stop: ## Stop all containers
 
 container: ## Enter the container
 	$(DOCKER) bash
-
-migration: ## Create a migration
-	$(DOCKER) $(POETRY_CMD) alembic revision --autogenerate -m "$(message)"
-
-migrate: ## Run migration
-	$(DOCKER) $(POETRY_CMD) alembic upgrade head
 
 pre-commit: ## Run pre-commit
 	$(POETRY_CMD) pre-commit run --all-files
