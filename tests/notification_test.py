@@ -1,5 +1,6 @@
 import random
 
+import pytest
 import pytest_asyncio
 import redis.asyncio as aioredis
 from fastapi import status
@@ -22,11 +23,12 @@ async def redis_client():
     await redis_url.aclose()
 
 
-async def test_rate_limit_exceeded(base_url, redis_url):
+@pytest.mark.asyncio
+async def test_rate_limit_exceeded(client, redis_client):
     user_id = random.randint(100, 1000)
 
     for i in range(1, settings.RATE_LIMIT + 2):
-        response = base_url.post(
+        response = client.post(
             "/api/notification",
             headers={"user-id": str(user_id)},
             json={
@@ -40,4 +42,4 @@ async def test_rate_limit_exceeded(base_url, redis_url):
             assert response.status_code == status.HTTP_429_TOO_MANY_REQUESTS
             assert response.json() == {"detail": "Too Many Requests"}
 
-    await redis_url.delete(f"user_id: {user_id}")
+    await redis_client.delete(f"user_id: {user_id}")
