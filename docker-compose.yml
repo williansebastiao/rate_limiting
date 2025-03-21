@@ -1,0 +1,30 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: rate:1.0.0
+        container_name: rate-app
+        env_file: ".env"
+        environment:
+            - PYDEVD_DISABLE_FILE_VALIDATION=1
+        restart: unless-stopped
+        command: python -m debugpy --listen 0.0.0.0:5678 -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+        ports:
+            - "8000:8000"
+            - "5678:5678"
+        volumes:
+            - ./app:/code/app
+            - ./tests:/code/tests
+            - ./.env:/code/.env
+        depends_on:
+            - db
+        networks:
+            - rate
+
+networks:
+    rate:
+        driver: bridge
+
+volumes:
+    database:
