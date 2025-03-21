@@ -1,3 +1,4 @@
+from pydantic import RedisDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -9,6 +10,9 @@ class Settings(BaseSettings):
     APP_PATH: str = "/api"
 
     RATE_LIMIT: int = 100
+    CACHE_TIME: int = 60
+
+    CACHE_DRIVER: RedisDsn
 
     model_config = SettingsConfigDict(
         extra="ignore",
