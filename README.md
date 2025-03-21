@@ -1,27 +1,27 @@
 
-# Simulator
+# Rate limiting
 
-Este projeto tem como objetivo criar uma simulação de apólice veicular, permitindo a análise de diferentes cenários e condições para seguros automotivos.
+Este projeto tem como objetivo desenvolver uma solução eficiente de rate limiting para controlar as requisições de um payload.
 
 
 ## Tecnologias Utilizadas
 
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Docker](https://www.docker.com/)
-- [Postgre](https://www.postgresql.org/)
+- [Redis](https://redis.io/docs/latest/commands/)
 - [Poetry](https://python-poetry.org/)
 ## Instalação e Configuração
 
 1 - Clone o repositório do projeto e acesse o diretório correspondente
 
 ```bash
-  git clone https://github.com/williansebastiao/simulator
+  git clone https://github.com/williansebastiao/rate_limiting
 ```
 
 2- Entre no diretório criado
 
 ```bash
-  cd simulator
+  cd rate_limiting
 ```
 
 3- Configure o projeto
@@ -36,6 +36,11 @@ Este projeto tem como objetivo criar uma simulação de apólice veicular, permi
   make build
 ```
 
+5 - Acesse a url do swagger
+
+```bash
+http://localhost:8000/api/docs
+```
 
 ## Configuração no VS Code
 
@@ -48,15 +53,6 @@ Caso utilize o Visual Studio Code como IDE, é recomendável configurar o ambien
 ```bash
 ~/.cache/pypoetry/virtualenvs/nome-do-projeto/bin/python
 ```
-
-## Migrations
-
-Para executar as migrations, rode o seguinte comando:
-
-```bash
-  make migrate
-```
-
 
 ## Análise de Código (Linting)
 
